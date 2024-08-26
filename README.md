@@ -5,6 +5,7 @@
 C++/DxLib　制作期間：約４カ月（３年前期）
 
 60fps想定のゲームです
+モニターを60hzにしてください。
 
 プレイ動画:https://youtu.be/j89RGpmQack
 
