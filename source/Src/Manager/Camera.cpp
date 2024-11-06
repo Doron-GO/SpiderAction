@@ -89,6 +89,20 @@ void Camera::SetBeforeDrawFollow(void)
 
 void Camera::Draw()
 {
+	//DrawFormatString(0, 0, 0xffffff, "座標：%f,%f,%f", pos_.x, pos_.y, pos_.z);
+	//DrawFormatString(0, 20, 0xffffff, "カメラ角度：(%.2f, %.2f, %.2f)",
+
+	//	angles_.x * 180.0f / DX_PI_F,
+	//	angles_.y * 180.0f / DX_PI_F,
+	//	angles_.z * 180.0f / DX_PI_F);
+
+	char p = '0' + 1;
+	char pp = '0' + 2;
+	//DrawFormatString(300, 300, 0xffffff, "B"+1);
+
+
+	//追従視点
+	//DrawSphere3D(targetPos_, 20.0f, 10, 0x00ff00, 0x00ff00, true);
 
 }
 
@@ -103,7 +117,7 @@ void Camera::ProcessRot(void)
 	float move = 10.0f;
 	float rad = 0.0f;
 
-	auto& contData = controller_->GetInputData();
+	auto contData = controller_->GetInputData();
 	auto controllerStick = InputManager::GetInstance().GetJPadInputState(padNumber_);
 	auto& key = InputManager::GetInstance();
 	//カメラの回転

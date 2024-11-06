@@ -1,7 +1,6 @@
 #pragma once
-#include "../Object/Common/Transform.h"
 #include "SceneBase.h"
-#include<map>
+#include "../Object/Common/Transform.h"
 
 class SceneManager;
 class Grid;
@@ -22,14 +21,6 @@ public:
 
 private:
 
-	enum class IMG
-	{
-		TITLE,
-		START,
-		PUSH_BUTTON
-		
-	};
-
 	int count_;
 
 	//プレイヤーのアニメーション制御
@@ -49,8 +40,5 @@ private:
 
 	// 背景
 	std::unique_ptr<SkyDome> skyDome_;
-
-	//
-	std::map<IMG, int> images_;
 
 };

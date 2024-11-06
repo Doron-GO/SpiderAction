@@ -26,9 +26,12 @@ void ResourceManager::Init(void)
 	// タイトル画像
 	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "title.png");
 	resouceMap_.emplace(SRC::TITLE, res);
-
 	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "START.png");
 	resouceMap_.emplace(SRC::START, res);
+
+	// PushSpace画像
+	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "PushSpace.png");
+	resouceMap_.emplace(SRC::PUSH_SPACE, res);
 
 	// スカイドーム
 	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "SkyDome/SkyDome.mv1");
@@ -44,15 +47,7 @@ void ResourceManager::Init(void)
 
 	//コイン
 	res = Resource(Resource::TYPE::MODEL, Application::PATH_MODEL + "Player/Gwen_model1.mv1");
-	resouceMap_.emplace(SRC::CHARACTER, res);
-
-	//クリア画面
-	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "Congratulations.png");
-	resouceMap_.emplace(SRC::CONGRATULATIONS, res);
-
-	//クリア背景画面
-	res = Resource(Resource::TYPE::IMG, Application::PATH_IMAGE + "VictoryBack.png");
-	resouceMap_.emplace(SRC::CLEAR, res);
+	resouceMap_.emplace(SRC::COIN, res);
 
 }
 

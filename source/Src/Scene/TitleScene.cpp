@@ -27,12 +27,12 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-
 	ResourceManager& rm = lpResourceMng;
 
 	// âÊëúì«Ç›çûÇ›
-	images_.emplace(IMG::START,rm.Load(ResourceManager::SRC::START).handleId_) ;
-	images_.emplace(IMG::TITLE,rm.Load(ResourceManager::SRC::TITLE).handleId_) ;
+	imgTitle_ = rm.Load(ResourceManager::SRC::TITLE).handleId_;
+	imgStart_ = rm.Load(ResourceManager::SRC::START).handleId_;
+	imgPush_ = rm.Load(ResourceManager::SRC::PUSH_SPACE).handleId_;
 
 	transform_.SetModel(
 		lpResourceMng.LoadModelDuplicate(ResourceManager::SRC::STAGE));
@@ -70,7 +70,11 @@ void TitleScene::Draw(void)
 {
 	MV1DrawModel(transform_.modelId);
 	//É^ÉCÉgÉãâÊëú
-	DrawRotaGraph(static_cast<int>(Application::SCREEN_SIZE_X / 2.0f), 250, 0.35, 0.0, images_[IMG::TITLE], true, 5.0);
-	DrawRotaGraph(static_cast<int>(Application::SCREEN_SIZE_X / 2.0f), 550, 0.35, 0.0, images_[IMG::START], true,5.0);
+	DrawRotaGraph(Application::SCREEN_SIZE_X / 2, 250, 0.35, 0.0, imgTitle_, true,5.0);
+	DrawRotaGraph(Application::SCREEN_SIZE_X / 2, 550, 0.35, 0.0, imgStart_, true,5.0);
+	if ((count_ / 30) % 2 != 0)
+	{
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2, 500, 1.0, 0.0, imgPush_, true);
+	}
 }
 

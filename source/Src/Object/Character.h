@@ -20,6 +20,8 @@ public:
 
 	void Draw(void);
 
+	void Release(void);
+
 	//î•ñæ“¾
 	VECTOR GetPos(void);
 

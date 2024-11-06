@@ -50,11 +50,10 @@ private:
 	std::unique_ptr<SkyDome> skyDome_;
 
 	// 三人の自分の見た目をした人間
-	std::vector< std::unique_ptr<Character>> characters_;
+	std::vector<Character*> character_;
 
 	//プレイヤー
-	//Player* player_;
-	std::unique_ptr<Player> player_;
+	Player* player_;
 
 	int isHitNum_;
 

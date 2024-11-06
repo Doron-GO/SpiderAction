@@ -13,14 +13,13 @@ public:
 	enum class SRC
 	{
 		TITLE,
+		PUSH_SPACE,
 		SKYDOME,
 		STAGE,
 		PLAYER,
 		PLAYER_SHADOW,
-		CHARACTER,
-		START,
-		CLEAR,
-		CONGRATULATIONS
+		COIN,
+		START
 	};
 
 

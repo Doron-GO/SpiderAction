@@ -4,7 +4,6 @@
 #include "../Common/Fader.h"
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
-#include "../Scene/GameOverScene.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -134,6 +133,7 @@ void SceneManager::Draw(void)
 	//Effekseerの描画処理
 	DrawEffekseer3D();
 
+	// 主にポストエフェクト用
 	camera_->Draw();
 
 	fader_->Draw();
@@ -234,11 +234,6 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
-		break;
-	case SceneManager::SCENE_ID::CLEAR:
-		scene_ = new GameOverScene();
-		break;
-	default:
 		break;
 	}
 

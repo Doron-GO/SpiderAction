@@ -28,7 +28,7 @@ void GameScene::Init(void)
 	//ステージ
 	stage_ = std::make_unique<Stage>();
 	//プレイヤー
-	player_ = std::make_unique < Player>();
+	player_ = new Player();
 	// スカイドーム
 	skyDome_ = std::make_unique<SkyDome>();
 	// グリッド線
@@ -41,7 +41,7 @@ void GameScene::Init(void)
 
 	//コイン
 	MakeCharacter();
-	for (const auto& c : characters_)
+	for (const auto c : character_)
 	{
 		c->Init();
 	}
@@ -63,13 +63,13 @@ void GameScene::Init(void)
 void GameScene::Update(void)
 {	
 	auto& ins = InputManager::GetInstance();
-	if(isHitNum_==characters_.size())
+	if(isHitNum_==character_.size())
 	{
 		for (int cnt = 0; cnt < 100; cnt++)
 		{
 			continue;
 		}
-		lpSceneMng.ChangeScene(SceneManager::SCENE_ID::CLEAR);
+		lpSceneMng.ChangeScene(SceneManager::SCENE_ID::TITLE);
 	}
 	if(player_->IsAlive())
 	{
@@ -81,7 +81,7 @@ void GameScene::Update(void)
 	skyDome_->Update();
 	stage_->Update();
 	// キャラクター
-	for (const auto& c : characters_)
+	for (const auto c : character_)
 	{
 		c->Update();
 	}
@@ -90,7 +90,7 @@ void GameScene::Update(void)
 
 void GameScene::Draw(void)
 {
-	for (const auto& c : characters_)
+	for (const auto c : character_)
 	{
 		c->Draw();
 	}
@@ -106,6 +106,13 @@ void GameScene::DrawDebug(void)
 
 void GameScene::Release(void)
 {	
+	delete player_;
+	for (const auto c : character_)
+	{
+		c->Release();
+		delete c;
+	}
+	character_.clear();
 }
 
 void GameScene::Load(void)
@@ -123,7 +130,7 @@ void GameScene::Load(void)
 void GameScene::MakeCharacter(void)
 {
 	Transform trans;
-	//Character* character;
+	Character* character;
 	trans.pos = { 10167, 648, 25656 };
 	trans.scl = { 1.0f,1.0f, 1.0f };
 	trans.quaRot = Quaternion::Euler(
@@ -131,7 +138,9 @@ void GameScene::MakeCharacter(void)
 		AsoUtility::Deg2RadF(180.0f),
 		AsoUtility::Deg2RadF(0.0f)
 	);
-	characters_.emplace_back(std::make_unique< Character>(trans));
+	character = new Character(trans);
+	character->Init();
+	character_.push_back(character);
 
 	trans.pos = { 12065, 4094, 20288 };
 	trans.scl = { 1.0f,1.0f, 1.0f };
@@ -140,11 +149,9 @@ void GameScene::MakeCharacter(void)
 		AsoUtility::Deg2RadF(180.0f),
 		AsoUtility::Deg2RadF(0.0f)
 	);
-	characters_.emplace_back(std::make_unique< Character>(trans));
-	for (auto& c :characters_)
-	{
-		c->Init();
-	}
+	character = new Character(trans);
+	character->Init();
+	character_.push_back(character);
 }
 
 void GameScene::IsHitCharcterPlayer(void)
@@ -153,7 +160,7 @@ void GameScene::IsHitCharcterPlayer(void)
 	// コインとプレイヤーの衝突判定
 	auto p = player_->GetTransform();
 
-	for (const auto& c : characters_)
+	for (const auto c : character_)
 	{
 		//表示されているとき
 		if (c->GetHit())

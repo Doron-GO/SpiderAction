@@ -15,14 +15,13 @@ Character::Character(Transform transform)
 
 Character::~Character()
 {
-	MV1DeleteModel(transform_.modelId);
 }
 
 void Character::Init(void)
 {
 	//ƒ‚ƒfƒ‹î•ñ‚ğŠi”[
 	transform_.SetModel(
-		resourceManager_.LoadModelDuplicate(ResourceManager::SRC::CHARACTER));
+		resourceManager_.LoadModelDuplicate(ResourceManager::SRC::COIN));
 
 	//‰ñ“]‚Ìİ’è
 	coinRotY_ = Quaternion();
@@ -48,6 +47,12 @@ void Character::Draw(void)
 {
 	// ƒ‚ƒfƒ‹‚Ì•`‰æ
 	MV1DrawModel(transform_.modelId);
+}
+
+void Character::Release(void)
+{
+	MV1DeleteModel(transform_.modelId);
+
 }
 
 VECTOR Character::GetPos(void)
